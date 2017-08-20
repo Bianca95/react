@@ -7,7 +7,7 @@ React JS first project
 Some good starting tutorials for intermmediate level would be the [Comprehensive React.js Guide](https://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/) in parallel with the [Official React Tutorial](https://facebook.github.io/react/tutorial/tutorial.html) and for more in-depth coding exercises, [Tutorials Point ReactJS Tutorial](https://www.tutorialspoint.com/reactjs/index.htm).
 
 ### Prerequisites
-##### Ununtu 16.04
+##### Ubuntu 16.04
 
 #### Install node and npm
 
@@ -38,15 +38,18 @@ create-react-app app-name
 
 #### Directory layout
 
-The created app will contain a *node_modules* folder that should stay where it is together with the *package.json* file. The *public* folder can be deleted after moving the *index.html* file in the *src* folder. Now the *src* folder should look like this:  
+The created app will contain a *node_modules* folder that should stay where it is together with the *public* folder and *package.json* file. Create a *components* folder in the *src* folder to keep all the components in. Now the directory should look like this:  
 
-src ->  
-⋅⋅⋅index.css  
-⋅⋅⋅index.html  
-⋅⋅⋅js ->  
-⋅⋅⋅⋅⋅⋅index.js  
-⋅⋅⋅⋅⋅⋅components ->  
-⋅⋅⋅⋅⋅⋅⋅⋅⋅component.js
+app-name ->  
+  node_modules -> etc  
+  public ->  
+    index.html  
+  src ->  
+    index.css  
+    index.html  
+    index.js  
+    components ->  
+      component.js
 
 #### Create a component
 
@@ -89,7 +92,7 @@ Your index.html should look something like this:
 
    <body>
       <div id = "app"></div>
-      <script src = "js/index.js"></script>
+      <script src = "index.js"></script>
    </body>
 
 </html>
