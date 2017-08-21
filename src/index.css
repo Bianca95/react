@@ -1,50 +1,64 @@
+@import "https://fonts.googleapis.com/css?family=Coda";
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  overflow-x: hidden;
+  font-family: 'Coda', cursive;
+  background-color: #fafafa;
+  margin: 10px;
+  padding: 10px;
 }
 
-ol, ul {
-  padding-left: 30px;
-}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
-}
-
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
+h1 {
   text-align: center;
-  width: 34px;
+  font-size: 180%;
+  line-height: 120%;
+  padding: 5% 0;
+  color: #7d7d7d;
 }
 
-.square:focus {
+h3 {
+  line-height: 110%;
+  padding: 5% 0;
+}
+
+p {
+  padding: 1%;
+  color: #4f4f4f;
+}
+
+input {
+  margin-right: 5px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #4f4f4f;
+  border-radius: 2px;
+  border-bottom-width: 3px;
+  background-color: transparent;
+  text-align: center;
+  font-family: 'Coda', cursive;
+  font-size: 15px;
+}
+
+input:focus{
   outline: none;
 }
 
-.kbd-navigation .square:focus {
-  background: #ddd;
+button {
+  width: auto;
+  height: auto;
+  margin: none;
+  background-color: transparent;
+  border: 2px solid #ec7964;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  color: #ec7964;
+  transition: background-color 0.8s ease;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
+button:hover {
+  background-color: #ec7964;
+  color: white;
 }
