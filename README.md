@@ -78,26 +78,6 @@ class Component extends React.Component {
    }
 }
 ```
-#### index.html
-
-Your index.html should look something like this:  
-```
-<!DOCTYPE html>
-<html lang = "en">
-
-   <head>
-      <meta charset = "UTF-8">
-      <title>React App</title>
-   </head>
-
-   <body>
-      <div id = "app"></div>
-      <script src = "index.js"></script>
-   </body>
-
-</html>
-```  
-Setting *div id* to *app* as root element for the app and adding the *index.js* script referencing to the app file.
 
 ## Running the tests
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import HelloWorld from './components/HelloWorld.jsx'
+import FriendsContainer from './components/Friends.jsx';
 
-ReactDOM.render(<HelloWorld />, document.getElementById('app'));
+ReactDOM.render(<FriendsContainer />, document.getElementById('app'));
