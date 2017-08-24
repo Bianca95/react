@@ -34,3 +34,25 @@ gulp.task('watch', function(){
 
 //Activate watch by runing 'gulp' in terminal
 gulp.task('default', ['watch']);
+
+//Concatenate and minify js files
+gulp.task('build', function(){
+	gulp.src(path.JS)
+		.pipe(react())
+		.pipe(concat(path.MINIFIED_OUT))
+		.pipe(uglify(path.MINIFIED_OUT))
+		.pipe(gulp.dest(path.DEST_BUILD));
+});
+
+//Replace src paths in html file 
+gulp.task('replaceHTML', function(){
+	gulp.src(path.HTML)
+		.pipe(htmlreplace({
+			'js': 'build/' + path.MINIFIED_OUT
+		}))
+		.pipe(gulp.dest(path.DEST));
+});
+
+//Run both tasks together
+//Whenever js files ar	e concatenated, change html pats
+gulp.task('prod', ['build', 'replaceHTML']);
