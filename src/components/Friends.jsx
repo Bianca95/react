@@ -32,6 +32,10 @@ var AddFriend = React.createClass({
 			newFriend: ''
 		}
 	},
+	//Use propTypes to require the presence of the addFriend prop to be passed
+	propTypes: {
+		addNew: React.PropTypes.func.isRequired
+	},
 
 	updateNewFriend: function(e){
 		this.setState({
@@ -57,6 +61,12 @@ var AddFriend = React.createClass({
 })
 
 var ShowList = React.createClass({
+	getDefaultProps: function(){
+		return {
+			names: []
+		}
+	},
+
 	render: function(){
 		var listItems = this.props.names.map(function(friend){
 			return <li> {friend} </li>;
