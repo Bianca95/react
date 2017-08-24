@@ -1,17 +1,20 @@
 var gulp = require('gulp');
-var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var react = require('gulp-react');
 var htmlreplace = require('gulp-html-replace');
+var source = require('vinyl-source-stream');
+var browserify = require('browserify');
+var watchify = require('watchify');
+var reactify = require('reactify');
+var streamify = require('gulp-streamify');
 
 var path = {
 	HTML: 'src/index.html',
-  	ALL: ['src/js/*.js', 'src/js/**/*.js', 'src/index.html'],
-  	JS: ['src/js/*.js', 'src/js/**/*.js'],
   	MINIFIED_OUT: 'build.min.js',
+  	OUT: 'build.js',
+  	DEST: 'dist',
   	DEST_SRC: 'dist/src',
   	DEST_BUILD: 'dist/build',
-  	DEST: 'dist'
+  	ENTRY_POINT: './src/js/App.js'
 };
 
 //Transform files and put them into new folder 
@@ -27,9 +30,28 @@ gulp.task('copy', function(){
 		.pipe(gulp.dest(path.DEST));
 });
 
-//Update with every change
+//Watch files for updates
 gulp.task('watch', function(){
-	gulp.watch(path.ALL, ['transform', 'copy']);
+	gulp.watch(path.HTML, ['copy']);
+
+	var watcher = watchify(browserify({
+		entries: [path.ENTRY_POINT],
+		transform: [reactify],
+		debug: true, 
+		cache: {}, packageCache: {}, 
+		fullPaths: true
+	}));
+
+	return watcher.on('update', function(){
+		watcher.bundle()
+			.pipe(source(path.OUT))
+			.pipe(gulp.dest(path.DEST_SRC))
+			console.log('Updated');
+	})
+
+	.bundle()
+	.pipe(source(path.OUT))
+	.pipe(gulp.dest(path.DEST_SRC));
 });
 
 //Activate watch by runing 'gulp' in terminal
@@ -37,11 +59,15 @@ gulp.task('default', ['watch']);
 
 //Concatenate and minify js files
 gulp.task('build', function(){
-	gulp.src(path.JS)
-		.pipe(react())
-		.pipe(concat(path.MINIFIED_OUT))
-		.pipe(uglify(path.MINIFIED_OUT))
-		.pipe(gulp.dest(path.DEST_BUILD));
+	browserify({
+		entries: [path.ENTRY_POINT],
+		transform: [reactify]
+	})
+
+	.bundle()
+	.pipe(source(path.MINIFIED_OUT))
+	.pipe(streamify(uglify(path.MINIFIED_OUT)))
+	.pipe(gulp.dest(path.DEST_BUILD));
 });
 
 //Replace src paths in html file 
